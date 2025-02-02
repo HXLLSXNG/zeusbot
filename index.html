@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приветственная страница</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Шкала прохождения -->
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+
+        <!-- Шаг 1: Приветствие -->
+        <div id="step1" class="step active">
+            <h1>Добро пожаловать!</h1>
+            <button onclick="nextStep(2)">Начнем!</button>
+        </div>
+
+        <!-- Шаг 2: Выбор пола -->
+        <div id="step2" class="step">
+            <h2>Выберите ваш пол</h2>
+            <div class="gender-selection">
+                <div class="gender-option" onclick="selectGender('male', this)">
+                    <img src="male-icon.png" alt="Мужской">
+                    <p>Мужской</p>
+                </div>
+                <div class="gender-option" onclick="selectGender('female', this)">
+                    <img src="female-icon.png" alt="Женский">
+                    <p>Женский</p>
+                </div>
+            </div>
+            <button onclick="nextStep(3)">Далее</button>
+        </div>
+
+        <!-- Шаг 3: Выбор роста -->
+        <div id="step3" class="step">
+            <h2>Выберите ваш рост</h2>
+            <input type="range" min="100" max="250" value="170" id="heightSlider">
+            <p>Рост: <span id="heightValue">170</span> см</p>
+            <button onclick="nextStep(4)">Далее</button>
+        </div>
+
+        <!-- Шаг 4: Выбор веса -->
+        <div id="step4" class="step">
+            <h2>Выберите ваш вес</h2>
+            <input type="range" min="30" max="150" value="70" id="weightSlider">
+            <p>Вес: <span id="weightValue">70</span> кг</p>
+            <button onclick="nextStep(5)">Далее</button>
+        </div>
+
+        <!-- Шаг 5: Выбор возраста -->
+        <div id="step5" class="step">
+            <h2>Выберите ваш возраст</h2>
+            <input type="range" min="10" max="100" value="25" id="ageSlider">
+            <p>Возраст: <span id="ageValue">25</span> лет</p>
+            <button onclick="nextStep(6)">Далее</button>
+        </div>
+
+        <!-- Шаг 6: Выбор цели -->
+        <div id="step6" class="step">
+            <h2>Выберите вашу цель</h2>
+            <div class="goal-selection">
+                <div class="goal-option" onclick="selectGoal('mass', this)">
+                    <img src="mass-icon.png" alt="Набор массы">
+                    <p>Набор массы</p>
+                </div>
+                <div class="goal-option" onclick="selectGoal('maintain', this)">
+                    <img src="maintain-icon.png" alt="Поддержание">
+                    <p>Поддержание</p>
+                </div>
+                <div class="goal-option" onclick="selectGoal('lose', this)">
+                    <img src="lose-icon.png" alt="Похудение">
+                    <p>Похудение</p>
+                </div>
+            </div>
+            <button onclick="nextStep(7)">Далее</button>
+        </div>
+
+        <!-- Шаг 7: Выбор групп мышц -->
+        <div id="step7" class="step">
+            <h2>Выберите группы мышц</h2>
+            <div class="muscle-selection">
+                <div class="muscle-option" onclick="toggleMuscle('chest', this)">
+                    <img src="chest-icon.png" alt="Грудь">
+                    <p>Грудь</p>
+                </div>
+                <div class="muscle-option" onclick="toggleMuscle('back', this)">
+                    <img src="back-icon.png" alt="Спина">
+                    <p>Спина</p>
+                </div>
+                <!-- Добавьте другие группы мышц -->
+            </div>
+            <label>
+                <input type="checkbox" id="selectAll" onclick="selectAllMuscles()"> Выделить все
+            </label>
+            <button onclick="nextStep(8)">Продолжить</button>
+        </div>
+
+        <!-- Шаг 8: Выбор опыта -->
+        <div id="step8" class="step">
+            <h2>Выберите ваш опыт</h2>
+            <div class="experience-selection">
+                <div class="experience-option" onclick="selectExperience('beginner', this)">
+                    <img src="beginner-icon.png" alt="Новичок">
+                    <p>Новичок</p>
+                </div>
+                <div class="experience-option" onclick="selectExperience('intermediate', this)">
+                    <img src="intermediate-icon.png" alt="Начинающий">
+                    <p>Начинающий</p>
+                </div>
+                <!-- Добавьте другие уровни опыта -->
+            </div>
+            <button onclick="nextStep(9)">Далее</button>
+        </div>
+
+        <!-- Шаг 9: Выбор количества тренировок -->
+        <div id="step9" class="step">
+            <h2>Выберите количество тренировок в неделю</h2>
+            <input type="range" min="1" max="7" value="3" id="workoutsSlider">
+            <p>Тренировок: <span id="workoutsValue">3</span></p>
+            <button onclick="nextStep(10)">Продолжить</button>
+        </div>
+
+        <!-- Шаг 10: Выбор оборудования -->
+        <div id="step10" class="step">
+            <h2>Выберите оборудование</h2>
+            <div class="equipment-selection">
+                <div class="equipment-option" onclick="toggleEquipment('dumbbells', this)">
+                    <img src="dumbbells-icon.png" alt="Гантели">
+                    <p>Гантели</p>
+                </div>
+                <div class="equipment-option" onclick="toggleEquipment('barbell', this)">
+                    <img src="barbell-icon.png" alt="Штанга">
+                    <p>Штанга</p>
+                </div>
+                <!-- Добавьте другие виды оборудования -->
+            </div>
+            <button onclick="finish()">Завершить</button>
+            <button onclick="nextStep(11)">Продолжить</button>
+        </div>
+
+        <!-- Шаг 11: Личный кабинет -->
+        <div id="step11" class="step">
+            <h2>Ваш личный кабинет</h2>
+            <p>Пол: <span id="finalGender"></span></p>
+            <p>Рост: <span id="finalHeight"></span> см</p>
+            <p>Вес: <span id="finalWeight"></span> кг</p>
+            <p>Возраст: <span id="finalAge"></span> лет</p>
+            <p>Цель: <span id="finalGoal"></span></p>
+            <p>Группы мышц: <span id="finalMuscles"></span></p>
+            <p>Опыт: <span id="finalExperience"></span></p>
+            <p>Тренировок в неделю: <span id="finalWorkouts"></span></p>
+            <p>Оборудование: <span id="finalEquipment"></span></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
